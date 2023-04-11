@@ -1,0 +1,46 @@
+/** Bootstrap colors overrides */
+$primary: #1a5ac2;
+$danger: #f5365c;
+$warning: #fb6340;
+$secondary: #8392ab;
+
+/** Colors */
+$black: #000000;
+$white: #ffffff;
+$paper: #F9F8EF;
+$transparent: transparentize(white, 1);
+
+$custom-colors: (
+	"primary": $primary,
+	"danger": $danger,
+	"warning": $warning,
+	"secondary": $secondary,
+
+	// Custom
+	"black": $black,
+	"white": $white,
+	"paper": $paper,
+);
+
+$enable-negative-margins: true;
+$link-decoration: none;
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/maps";
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+$gutters: map-merge($gutters, (
+	6: $spacer * 4.5,
+));
+
+/** Helpers */
+@mixin prop($property, $value...) {
+	-webkit-#{$property}: $value;
+	-moz-#{$property}: $value;
+	-ms-#{$property}: $value;
+	-o-#{$property}: $value;
+	#{$property}: $value;
+}
