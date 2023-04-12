@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '../stores/index'
 
 const api = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/todos',
+  baseURL: 'https://registry.npmjs.org/-/v1',
   headers: {
     Accept: 'application/json'
   }

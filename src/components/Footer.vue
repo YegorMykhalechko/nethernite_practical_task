@@ -5,9 +5,11 @@ import BaseIcon from './Icon/BaseIcon.vue'
 <template>
   <div class="bg-light p-3">
     <div class="d-flex justify-content-center align-center">
-      <h5 class="me-1">Yegor Mykhalechko</h5>
       <a target="_blank" href="https://github.com/YegorMykhalechko">
-        <BaseIcon icon="github" />
+        <div class="d-flex">
+          <h5 class="me-1">Yegor Mykhalechko</h5>
+          <BaseIcon icon="github" />
+        </div>
       </a>
     </div>
   </div>

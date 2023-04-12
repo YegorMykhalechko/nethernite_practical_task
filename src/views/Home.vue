@@ -1,17 +1,23 @@
 <script setup>
-import api from '../api'
+import { ref } from 'vue'
 
 //Components
-import { onMounted } from 'vue'
+import Pagination from '../components/Pagination/Pagination.vue'
 
-onMounted(async () => {
-  // const res = await api.get('/1')
-  // console.log(res)
-})
+const currentPage = ref(1)
+const onPageChange = (page) => {
+  currentPage.value = page
+}
 </script>
 
 <template>
-  <h1>Hi</h1>
+  <Pagination
+    :total-pages="15"
+    :total="114"
+    :per-page="10"
+    :current-page="currentPage"
+    @pagechanged="onPageChange"
+  />
 </template>
 
 <style scoped></style>

@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import GitHubIcon from './Icons/GitHubIcon.vue'
+import GitHubIcon from './icon/GitHubIcon.vue'
 
 const props = defineProps({
   icon: String
