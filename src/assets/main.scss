@@ -5,6 +5,9 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
+    .full-height {
+      height: calc(100vh - 200px);
+    }
   }
 }
-

@@ -84,7 +84,7 @@ const isPageActive = (page) => {
 <template>
   <nav v-if="pages.length">
     <ul class="pagination">
-      <li class="page-item">
+      <li class="page-item d-none d-md-block">
         <button
           class="page-link"
           :class="{ disabled: isInFirstPage }"
@@ -106,7 +106,7 @@ const isPageActive = (page) => {
           <BaseIcon icon="arrowLeft" />
         </button>
       </li>
-      <li v-for="page of pages" class="page-item">
+      <li v-for="page of pages" class="page-item d-none d-md-block">
         <button
           type="button"
           @click="onClickPage(page.name)"
@@ -131,7 +131,7 @@ const isPageActive = (page) => {
 
       <li class="page-item">
         <button
-          class="page-link"
+          class="page-link d-none d-md-block"
           :class="{ disabled: isInLastPage }"
           type="button"
           @click="onClickLastPage"
@@ -145,10 +145,13 @@ const isPageActive = (page) => {
 </template>
 
 <style scoped lang="scss">
-.page-link {
-  &:focus {
-    box-shadow: none;
-    background-color: transparent;
+.pagination {
+  margin-bottom: 0;
+  .page-link {
+    &:focus {
+      box-shadow: none;
+      background-color: transparent;
+    }
   }
 }
 </style>

@@ -11,7 +11,7 @@ export default {
 
   getters: {
     allPackages(state) {
-      return state.packages
+      return state.packages.objects
     },
 
     allPages(state) {
@@ -21,16 +21,24 @@ export default {
 
   actions: {
     async getPackages({ commit, state }, query) {
-      const res = await api.get(`search?text=${query}&size=${state.sizePackage}`)
-      commit('setPackages', res)
-      commit('setDataQuery', query)
+      try {
+        const res = await api.get(`search?text=${query}&size=${state.sizePackage}`)
+        commit('setPackages', res)
+        commit('setDataQuery', query)
+      } catch (err) {
+        console.log(err)
+      }
     },
 
     async getNextPackages({ commit, state }, offset) {
-      const res = await api.get(
-        `search?text=${state.queryPackage}&size=${state.sizePackage}&from=${offset}`
-      )
-      commit('setNextPackages', res)
+      try {
+        const res = await api.get(
+          `search?text=${state.queryPackage}&size=${state.sizePackage}&from=${offset}`
+        )
+        commit('setNextPackages', res)
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
 
