@@ -1,15 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-import api from '../api'
-const searchValue = ref('')
+
 const store = useStore()
+const searchValue = ref('')
+
+//Get Packages
 const submit = () => {
-  const data = {
-    query: searchValue.value,
-    size: 10
-  }
-  store.dispatch('packageModule/getPackages', data)
+  store.dispatch('packageModule/getPackages', searchValue.value)
   searchValue.value = ''
 }
 </script>

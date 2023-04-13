@@ -7,6 +7,7 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import GlobalLoader from './components/Loaders/GlobalLoader.vue'
 
+//Define Global Loader
 const store = useStore()
 const loading = computed(() => store.state.loader.loading)
 </script>

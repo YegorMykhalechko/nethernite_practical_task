@@ -4,29 +4,46 @@ export default {
   namespaced: true,
 
   state: () => ({
-    packages: []
+    packages: [],
+    sizePackage: 10,
+    queryPackage: null
   }),
 
   getters: {
     allPackages(state) {
       return state.packages
+    },
+
+    allPages(state) {
+      return Math.ceil(state.packages.total / state.sizePackage)
     }
   },
 
   actions: {
-    async getPackages({ commit }, data) {
-      // const res = await api.get(`search?text=${data.query}&size=${data.size}`)
-      // const res20 = await api.get(`search?text=${data.query}`)
-      // const resoffset = await api.get(`search?text=${data.query}&size=${data.size}&from=10`)
-      // console.log('res10:', res)
-      // console.log('res20:', res20)
-      // console.log('resOffset:', resoffset)
-      // commit('setPackages', res)
+    async getPackages({ commit, state }, query) {
+      const res = await api.get(`search?text=${query}&size=${state.sizePackage}`)
+      commit('setPackages', res)
+      commit('setDataQuery', query)
+    },
+
+    async getNextPackages({ commit, state }, offset) {
+      const res = await api.get(
+        `search?text=${state.queryPackage}&size=${state.sizePackage}&from=${offset}`
+      )
+      commit('setNextPackages', res)
     }
   },
 
   mutations: {
     setPackages(state, packages) {
+      state.packages = packages
+    },
+
+    setDataQuery(state, query) {
+      state.queryPackage = query
+    },
+
+    setNextPackages(state, packages) {
       state.packages = packages
     }
   }

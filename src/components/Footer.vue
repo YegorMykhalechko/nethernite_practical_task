@@ -1,4 +1,5 @@
 <script setup>
+//Components
 import BaseIcon from './Icon/BaseIcon.vue'
 </script>
 

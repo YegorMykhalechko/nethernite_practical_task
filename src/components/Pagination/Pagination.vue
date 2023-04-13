@@ -1,6 +1,9 @@
 <script setup>
 import { computed } from 'vue'
 
+//Components
+import BaseIcon from '../Icon/BaseIcon.vue'
+
 const props = defineProps({
   maxVisibleButtons: {
     type: Number,
@@ -8,10 +11,6 @@ const props = defineProps({
     default: 3
   },
   totalPages: {
-    type: Number,
-    required: true
-  },
-  perPage: {
     type: Number,
     required: true
   },
@@ -23,6 +22,7 @@ const props = defineProps({
 
 const emit = defineEmits(['pagechanged'])
 
+//Computed Pagination
 const startPage = computed(() => {
   if (props.currentPage === 1) {
     return 1
@@ -60,6 +60,7 @@ const isInLastPage = computed(() => {
   return props.currentPage === props.totalPages
 })
 
+//Emits Pagination
 const onClickFirstPage = () => {
   emit('pagechanged', 1)
 }
@@ -81,7 +82,7 @@ const isPageActive = (page) => {
 </script>
 
 <template>
-  <nav>
+  <nav v-if="pages.length">
     <ul class="pagination">
       <li class="page-item">
         <button
@@ -90,7 +91,8 @@ const isPageActive = (page) => {
           type="button"
           @click="onClickFirstPage"
         >
-          First
+          <BaseIcon icon="arrowLeft" />
+          <BaseIcon icon="arrowLeft" />
         </button>
       </li>
 
@@ -101,7 +103,7 @@ const isPageActive = (page) => {
           type="button"
           @click="onClickPreviousPage"
         >
-          Previous
+          <BaseIcon icon="arrowLeft" />
         </button>
       </li>
       <li v-for="page of pages" class="page-item">
@@ -123,7 +125,7 @@ const isPageActive = (page) => {
           type="button"
           @click="onClickNextPage"
         >
-          Next
+          <BaseIcon icon="arrowRight" />
         </button>
       </li>
 
@@ -134,7 +136,8 @@ const isPageActive = (page) => {
           type="button"
           @click="onClickLastPage"
         >
-          Last
+          <BaseIcon icon="arrowRight" />
+          <BaseIcon icon="arrowRight" />
         </button>
       </li>
     </ul>
